@@ -1,14 +1,29 @@
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
+import java.util.Scanner;
 
 public class Main3 {
     private static final Map<String, String> rubrica = new HashMap<>();
 
     public static void main(String[] args) {
         System.out.println("-------------------- FUNZIONE 1 ----------------------");
+        boolean continua = true;
+        Scanner sc = new Scanner(System.in);
         try {
-            addContact("Aldo Baglio", "+39 3425456547");
-            addContact("Giovanni Storti", "+39 3425456548");
+            do {
+
+                System.out.println("Inserisci un nome da aggiunger in rubrica");
+                String nome = sc.nextLine();
+                System.out.println("Inserisci il suo numero di telefono");
+                String telefono = sc.nextLine();
+                addContact(nome, telefono);
+                System.out.println("Inserisci '+' x aggiungerne un altro");
+                String x = sc.nextLine();
+                if (!Objects.equals(x, "+")) continua = false;
+            } while (continua);
+
+
             addContact("Giacomo Poretti", "+39 3425456549");
             System.out.println("Aggiunti " + rubrica.size() + " contatti");
         } catch (Exception e) {
@@ -16,14 +31,21 @@ public class Main3 {
         }
         System.out.println("-------------------- FUNZIONE 2 ----------------------");
         int totaleContattiPreEliminazione = rubrica.size();
-        removeContactByName("Giacomo Poretti");
+        System.out.println("inserisci contatto da eliminare");
+        String d = sc.nextLine();
+        removeContactByName(d);
         System.out.println("Ho rimosso " + (totaleContattiPreEliminazione - rubrica.size()) + " contatti");
 
         System.out.println("-------------------- FUNZIONE 3 ----------------------");
-        findPersonByPhoneNumber("+39 3425456547");
+        System.out.println("Inserisci il numero da cercare");
+        String query = sc.nextLine();
+
+        findPersonByPhoneNumber(query);
 
         System.out.println("-------------------- FUNZIONE 4 ----------------------");
-        findNumberByName("Aldo Baglio");
+        System.out.println("Inserisci il nome da cercare");
+        String queryname = sc.nextLine();
+        findNumberByName(queryname);
         System.out.println("-------------------- FUNZIONE 5 ----------------------");
         printList();
     }

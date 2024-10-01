@@ -40,9 +40,8 @@ public class Main2 {
 
     public static void printList(List<Integer> list) {
         System.out.println("Stampo lista lunga " + list.size());
-        int index = 0;
-        for (Integer intero : list) {
-            System.out.println("Posizione [" + (index++) + "]: " + intero);
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println("Posizione [" + (i) + "]: " + list.get(i));
 
         }
     }
